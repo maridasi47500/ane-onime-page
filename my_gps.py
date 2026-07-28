@@ -1,5 +1,12 @@
 import random
 import requests
+from sys import argv
+user_id=argv[1]
+min_lat=argv[2]
+min_lon=argv[3]
+max_lat=argv[4]
+max_lon=argv[5]
+transport_mode=argv[6]
 
 # Function to generate random coordinates within a given bounding box
 def random_coordinates(bbox):
@@ -36,6 +43,7 @@ def get_route(start, end, vehicle='foot'): #Transport mode profile. Supported va
             print("distance",y["distance"])
             print("duration",y["duration"])
             print("summary",y["summary"])
+            mysql="insert into post (title,content,lat,lon,location,pic,user_id) values ('welcome on tour','in summary, this musical trip by "+vehicle+"s gonna take"+y["duration"]+", on a distance of "+y["distance"]+", and were gonna pass through "+y["summary"]+". enjoy this tour with me!','"+str(start[0])+"','"+str(start[1])+"','','transport_mode.pic','"+str(user_id)+'");"
             print("STEPS")
             step=0
             for z in y["steps"]:
@@ -51,9 +59,12 @@ def get_route(start, end, vehicle='foot'): #Transport mode profile. Supported va
                 print("location ",z["maneuver"]["location"])
                 try:
                     print("modifier",z["maneuver"]["modifier"])
+                    modifier=z["maneuver"]["modifier"]
                 except:
                     print("")
+                    modifier=""
                 print("type ",z["maneuver"]["type"])
+                mysql+="\ninsert into post (title,content,lat,lon,location,pic,user_id) values ('follow me on tour','"+z["maneuver"]["location"]+" "+z["maneuver"]["type"]+" "+modifier+". enjoy !','"+str(start[0])+"','"+str(start[1])+"','"+z["maneuver"]["location"]+"','place_pic.pic','"+str(user_id)+'");"
                 #print("intersections  : ")
                 #for a in z["intersections"]:
                 #    print("A",a)
