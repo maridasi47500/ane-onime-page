@@ -8,7 +8,7 @@ def random_coordinates(bbox):
     return lat, lon
 
 # Function to get a route from OpenStreetMap
-def get_route(start, end, vehicle='foot'):
+def get_route(start, end, vehicle='foot'): #Transport mode profile. Supported values: driving (car), cycling (bike), walking (pedestrian).
     url = 'http://router.project-osrm.org/route/v1/{}/{},{};{},{}?steps=true&geometries=polyline&overview=full&annotations=true'.format(
         vehicle, start[1], start[0], end[1], end[0])
     response = requests.get(url)

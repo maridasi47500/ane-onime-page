@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block montitre %}
+debut de mes mots: bienvenue dans gps anne onime page
+{% endblock %}
+{% block content %}
+<h1># ane-onime-page</h1>
+{% for x in users | reverse %}
+ <li>{{ x["first_name"]  }}</li>
+
+{% endfor %} 
+fin de mes mots : enregistre beaucoup de zones où voyager (4 point pas dans la mer) de la taille que tu veux. Le gps va choisir pour toi un trajet que tu vas utiliser pour ta tournée musicale.
+Pour ta tournée musicale, choisis la photo de profile que tu veux, le pseudonyme, la zone où tu veux voyager, en voiture, train , vélo ou à pied, Transport mode profile. Supported values: driving (car), cycling (bike), walking (pedestrian).
+{% endblock %}
+{% block liens %}
+<a href="/">welcome</a>
+{% endblock %}
+<a href="/add_one_bboxzoneouvoyager"> add one bboxzoneouvoyager</a><a href="/add_one_user"> add one user</a><a href="/add_one_country"> add one country</a><a href="/add_one_post"> add one post</a>
