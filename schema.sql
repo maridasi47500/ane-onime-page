@@ -34,6 +34,10 @@ create table if not exists bboxzoneouvoyager(
             max_lon text,
             name text
                     );
+INSERT OR IGNORE INTO bboxzoneouvoyager (min_lat, min_lon,max_lat,max_lon,name)
+VALUES( '45.92675064614011', '5.081708599776381', '52.67509283688802', '28.19694284682927', 'voyage en europe');
+INSERT OR IGNORE INTO bboxzoneouvoyager (min_lat, min_lon,max_lat,max_lon,name)
+VALUES( '33.25676200944641', '-116.31120436622517', '40.755306531960315', '-84.49479817995558', 'voyage en europe');
 create table if not exists user(
         id integer primary key autoincrement,
         username text,
