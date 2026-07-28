@@ -65,7 +65,7 @@ def get_route(start, end, vehicle='foot'):
     return data['routes'][0]['geometry']
 
 # Bounding box for the random coordinates (e.g., [min_lat, min_lon, max_lat, max_lon])
-bbox = [42.9462998575584, -2.6750931575636256, 56.36975981291837, 29.317094165353677]
+bbox = [45.92675064614011, 5.081708599776381, 52.67509283688802, 28.19694284682927]
 
 # Generate random start and end coordinates
 start = random_coordinates(bbox)
