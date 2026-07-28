@@ -19,6 +19,7 @@ def get_route(start, end, vehicle='foot'): #Transport mode profile. Supported va
     url = 'http://router.project-osrm.org/route/v1/{}/{},{};{},{}?steps=true&geometries=polyline&overview=full&annotations=true'.format(
         vehicle, start[1], start[0], end[1], end[0])
     response = requests.get(url)
+    mysql=""
     data = response.json()
     #print(data)
     print("DATA")
@@ -76,7 +77,8 @@ def get_route(start, end, vehicle='foot'): #Transport mode profile. Supported va
     return data['routes'][0]['geometry']
 
 # Bounding box for the random coordinates (e.g., [min_lat, min_lon, max_lat, max_lon])
-bbox = [45.92675064614011, 5.081708599776381, 52.67509283688802, 28.19694284682927]
+#bbox = [45.92675064614011, 5.081708599776381, 52.67509283688802, 28.19694284682927]
+bbox = [float(min_lat), float(min_lon), float(max_lat), float(max_lon)]
 
 # Generate random start and end coordinates
 start = random_coordinates(bbox)

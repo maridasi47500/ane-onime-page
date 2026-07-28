@@ -39,12 +39,19 @@ def add_one_bboxzoneouvoyager():
 
 @app.route("/add_one_user", methods=["GET","POST"])
 def add_one_user():
+    bboxzoneouvoyager= query_db("select * from bboxzoneouvoyager")
+    country= query_db("select * from country")
+    transport_mode= ["driving","cycling","walking"]
 
     if request.method == 'POST':
 
         the_username = "anonyme"
         one_user = query_db("insert into user (username,email,password,country_id,phone,pic,bboxzoneouvoyager_id,transport_mode) values (:username,:email,:password,:country_id,:phone,:pic,:bboxzoneouvoyager_id,:transport_mode)",request.form)
         user = query_db('select * from user')
+        myuser = query_db('select * from user where email = ? and password = ?', [request.form["email"],request.form["password"]])
+
+        p1=subprocess.Popen(["python3", "my_gps.py"])
+        p1.wait()
         return render_template("userform.html", users=user, one_user=one_user, the_title="add new user")
     user = query_db('select * from user')
     one_user = query_db("select * from user limit 1", one=True)
